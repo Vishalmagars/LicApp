@@ -47,15 +47,20 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:8080",
-                "https://lic.co",
-                "http://localhost:5173",
-                "http://localhost:5173/**",
-                "http://localhost:5174",
-                "http://localhost:5174/**"
-        ));
+       configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:8080",
+            "https://lic.co",
+            "http://localhost:5173",
+            "http://localhost:5173/**",
+            "http://localhost:5174",
+            "http://localhost:5174/**",
+            "https://licapp.onrender.com",
+            "https://rushikesh-aher.netlify.app",
+            "https://rushikesh-dashboard.netlify.app",
+            "https://licapp.onrender.com/**",
+            "https://rushikesh-aher.netlify.app/**",
+            "https://rushikesh-dashboard.netlify.app/**"
+    ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
