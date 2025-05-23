@@ -30,13 +30,8 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().and()
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/login", "/user/register", "/user/test1", "/user", "/user/me",
-                                "/plans/test", "/blog/test", "/testimonials/test", "/form/test").permitAll()
-                        .requestMatchers("GET", "/plans", "/plans/**", "/blog", "/blog/**", "/testimonials", "/testimonials/**", "/form", "/form/**").permitAll()
-                        .requestMatchers("POST", "/plans/addplan", "/testimonials/addtestimonial", "/form", "/form/send", "/blog/**").permitAll()
-                        .requestMatchers("PUT", "/plans/**", "/blog/**", "/testimonials/**").authenticated()
-                        .requestMatchers("DELETE", "/plans/**", "/blog/**", "/testimonials/**", "/form/**").authenticated()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/", "/**").permitAll()
+                        .anyRequest().permitAll()
                 )
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
@@ -47,20 +42,18 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-       configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:8080",
-            "https://lic.co",
-            "http://localhost:5173",
-            "http://localhost:5173/**",
-            "http://localhost:5174",
-            "http://localhost:5174/**",
-            "https://licapp.onrender.com",
-            "https://rushikesh-aher.netlify.app",
-            "https://rushikesh-dashboard.netlify.app",
-            "https://licapp.onrender.com/**",
-            "https://rushikesh-aher.netlify.app/**",
-            "https://rushikesh-dashboard.netlify.app/**"
-    ));
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList(
+                "http://localhost:8080",
+                "https://lic.co",
+                "http://localhost:5173",
+                "http://localhost:5173/**",
+                "http://localhost:5174",
+                "http://localhost:5174/**",
+                "https://licapp.onrender.com",
+                "https://rushikesh-aher.netlify.app",
+                "https://rushikesh-dashboard.netlify.app"
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
